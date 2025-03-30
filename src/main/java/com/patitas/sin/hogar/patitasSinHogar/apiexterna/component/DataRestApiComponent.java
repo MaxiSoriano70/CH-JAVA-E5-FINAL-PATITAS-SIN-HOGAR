@@ -39,7 +39,7 @@ public class DataRestApiComponent {
                 .email(email)
                 .password("1234")
                 .telefono(telefono)
-                .role(ERol.ADMIN)
+                .role(ERol.USER)
                 .build();
     }
 

@@ -24,10 +24,34 @@ public class SegurityConfiguration {
                 {
                     // Endpoints sin autenticación
                     auth.requestMatchers("/auth/**").permitAll();
-                    auth.requestMatchers("/usuario/**").permitAll();
-                    auth.requestMatchers("/mascota/**").permitAll();
-                    auth.requestMatchers("/adopcion/**").permitAll();
+
+                    // Endpoints accesibles solo para ADMIN
+                    auth.requestMatchers(HttpMethod.GET, "/usuario/**").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.POST, "/usuario/**").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.DELETE, "/usuario/**").hasRole("ADMIN");
+
+                    // Endpoints accesibles para ADMIN y USER
+                    auth.requestMatchers(HttpMethod.GET, "/usuario/{id}").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(HttpMethod.PUT, "/usuario/{id}").hasAnyRole("ADMIN", "USER");
+
+                    // Endpoints de mascotas
+                    auth.requestMatchers(HttpMethod.GET, "/mascota").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/mascota/{id}").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/mascota/**").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(HttpMethod.PUT, "/mascota/{id}").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(HttpMethod.DELETE, "/mascota/{id}").hasAnyRole("ADMIN", "USER");
+
+                    // Endpoints de adopciones
+                    auth.requestMatchers(HttpMethod.GET, "/adopcion").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/adopcion/{id}").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/adopcion/**").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(HttpMethod.PUT, "/adopcion/{id}").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(HttpMethod.DELETE, "/adopcion/{id}").hasAnyRole("ADMIN", "USER");
+
+                    //
                     auth.requestMatchers("/api/users/**").permitAll();
+                    auth.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/webjars/**").permitAll();
+
 
                     auth.anyRequest().authenticated();
                 })
