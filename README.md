@@ -120,7 +120,7 @@ Los roles (`ERol`) permiten diferenciar usuarios administradores y comunes.
 
 ## 📸 Video
 
-[Ver Postman](https://drive.google.com/file/d/10q-kcskdNZLCewvbiJR6KeG_6ntJVQ-q/view?usp=drive_link)
+[Ver Postman](https://drive.google.com/file/d/1G17HL4UDo5OSrc0B3Srl6cxGGFCNLw-W/view?usp=drive_link)
 
 ---
 
